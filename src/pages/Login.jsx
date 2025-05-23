@@ -1,41 +1,60 @@
-import React, { useContext, useEffect } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
-import { AppContext } from '../context/AppContext';
-import { demoUsers } from '../data/demoData';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-export default function Login() {
-  const { login, setData } = useContext(AppContext);
+const Login = () => {
+  const [form, setForm] = useState({ username: '', password: '', role: 'user' });
   const navigate = useNavigate();
-  const location = useLocation();
 
-  const searchParams = new URLSearchParams(location.search);
-  const loginType = searchParams.get('type'); // 'admin' or 'user'
+  const handleLogin = (e) => {
+    e.preventDefault();
 
-  useEffect(() => {
-    if (!loginType) {
-      navigate('/');
-    }
-  }, [loginType]);
-
-  const handleLogin = () => {
-    login(loginType);
-    setData(demoUsers); // use demo data
-    if (loginType === 'admin') {
-      navigate('/admin-dashboard');
+    // Simple role-based redirection (for demo)
+    if (form.role === 'admin') {
+      navigate('/admin');
     } else {
-      navigate('/user-dashboard');
+      navigate('/user');
     }
   };
 
   return (
-    <div className="max-w-md mx-auto mt-10 bg-white dark:bg-gray-800 p-6 rounded shadow">
-      <h2 className="text-2xl font-bold mb-4 text-center capitalize">{loginType} Login</h2>
-      <button
-        onClick={handleLogin}
-        className="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 rounded"
-      >
-        Log In as {loginType}
-      </button>
+    <div className="flex justify-center items-center min-h-screen bg-gray-100 px-4">
+      <div className="bg-white p-8 rounded shadow-md w-full max-w-md">
+        <h2 className="text-2xl font-bold mb-6 text-center">Login</h2>
+        <form onSubmit={handleLogin} className="space-y-4">
+          <input
+            type="text"
+            placeholder="Username"
+            className="w-full px-4 py-2 border rounded"
+            value={form.username}
+            onChange={(e) => setForm({ ...form, username: e.target.value })}
+            required
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            className="w-full px-4 py-2 border rounded"
+            value={form.password}
+            onChange={(e) => setForm({ ...form, password: e.target.value })}
+            required
+          />
+          <select
+            className="w-full px-4 py-2 border rounded"
+            value={form.role}
+            onChange={(e) => setForm({ ...form, role: e.target.value })}
+          >
+            <option value="user">User</option>
+            <option value="admin">Admin</option>
+          </select>
+          <button
+            type="submit"
+            className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600"
+          >
+            Login
+          </button>
+        </form>
+      </div>
     </div>
   );
-}
+};
+
+export default Login;
