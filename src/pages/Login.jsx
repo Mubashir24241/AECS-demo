@@ -17,7 +17,11 @@ const Login = () => {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100 px-4">
+    <div
+  className="flex justify-center items-center bg-gray-100 px-4"
+  style={{ minHeight: '82vh' }}
+>
+
       <div className="bg-white p-8 rounded shadow-md w-full max-w-md">
         <h2 className="text-2xl font-bold mb-6 text-center">Login</h2>
         <form onSubmit={handleLogin} className="space-y-4">
@@ -38,7 +42,7 @@ const Login = () => {
             required
           />
           <select
-            className="w-full px-4 py-2 border rounded"
+            className="w-full px-4 py-2 border rounded cursor-pointer"
             value={form.role}
             onChange={(e) => setForm({ ...form, role: e.target.value })}
           >
@@ -47,7 +51,7 @@ const Login = () => {
           </select>
           <button
             type="submit"
-            className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600"
+            className="w-full bg-blue-500 text-white py-2 rounded cursor-pointer hover:bg-blue-600"
           >
             Login
           </button>
