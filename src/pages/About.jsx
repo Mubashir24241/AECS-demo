@@ -22,15 +22,15 @@
 
 
 import React from 'react';
-import aboutImg from '../assets/team.jpeg'; // Add image in /assets folder or use online image
+import aboutImg from '../assets/team.jpeg';
 
 const About = () => {
   return (
     <div className="px-8 py-12">
       <h2 className="text-3xl font-semibold text-center mb-6">About Us</h2>
-      <div className="flex flex-col md:flex-row items-center gap-8">
-        <img src={aboutImg} alt="About" className="w-full md:w-1/2 rounded shadow-md" />
-        <p className="text-lg">
+      <div className="flex flex-col md:flex-row items-center gap-8"> 
+        <img src={aboutImg} alt="About" className="w-full md:w-1/2 rounded shadow-md cursor-pointer transform transition hover:scale-105 duration-300" />
+        <p className="text-xl text-gray-700 dark:text-gray-300">
           AECS Integration Credit System is designed to help employees track their training,
           certifications, and score-based achievements. It promotes a culture of continuous
           learning and recognition.
