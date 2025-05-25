@@ -12,7 +12,7 @@
 //         src={teamImage}
 //         alt="Our Team"
 //         className="rounded-2xl shadow-xl w-full max-w-lg transform transition hover:scale-105 duration-300"
-//       />
+//       /> 
 //     </div>
 //   );
 // }
